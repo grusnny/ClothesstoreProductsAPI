@@ -22,7 +22,7 @@ namespace ClothesstoreProductsAPI.Models
 
         public float price { get; set; }
 
-        public float discountPrice => (float)(price - ((price * discountPrice) / 100));
+        public float discountPrice => (float)(price - ((price * discountPercent) / 100));
 
         public float discountPercent { get; set; }
 
