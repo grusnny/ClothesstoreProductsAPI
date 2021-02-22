@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "F:\\Experimentality\\ClothesstoreProductsAPI\\ClothesstoreProductsAPI.csproj": {}
+    "C:\\Users\\andres\\Documents\\GitHub\\ClothesstoreProductsAPI\\ClothesstoreProductsAPI.csproj": {}
   },
   "projects": {
-    "F:\\Experimentality\\ClothesstoreProductsAPI\\ClothesstoreProductsAPI.csproj": {
+    "C:\\Users\\andres\\Documents\\GitHub\\ClothesstoreProductsAPI\\ClothesstoreProductsAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "F:\\Experimentality\\ClothesstoreProductsAPI\\ClothesstoreProductsAPI.csproj",
+        "projectUniqueName": "C:\\Users\\andres\\Documents\\GitHub\\ClothesstoreProductsAPI\\ClothesstoreProductsAPI.csproj",
         "projectName": "ClothesstoreProductsAPI",
-        "projectPath": "F:\\Experimentality\\ClothesstoreProductsAPI\\ClothesstoreProductsAPI.csproj",
+        "projectPath": "C:\\Users\\andres\\Documents\\GitHub\\ClothesstoreProductsAPI\\ClothesstoreProductsAPI.csproj",
         "packagesPath": "C:\\Users\\andres\\.nuget\\packages\\",
-        "outputPath": "F:\\Experimentality\\ClothesstoreProductsAPI\\obj\\",
+        "outputPath": "C:\\Users\\andres\\Documents\\GitHub\\ClothesstoreProductsAPI\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\andres\\AppData\\Roaming\\NuGet\\NuGet.Config",
