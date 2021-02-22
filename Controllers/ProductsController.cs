@@ -67,7 +67,9 @@ namespace ClothesstoreProductsAPI.Controllers
             {
                 using (var c = new MySqlConnection(con.MySQL))
                 {
-                    var sql = @"INSERT INTO product (product_id, name, brand, thumbnail, pictures, description, price, discountPrice, discountPercent, city_code, seller_id, currency, rating) VALUES (@product_id, @name, @brand, @thumbnail, @pictures, @description, @price, @discountPrice, @discountPercent, @city_code, @seller_id, @currency, @rating)";
+                    var sql = @"INSERT INTO product 
+                            (product_id, name, brand, thumbnail, pictures, description, price, discountPrice, discountPercent, city_code, seller_id, currency, rating) 
+                            VALUES (@product_id, @name, @brand, @thumbnail, @pictures, @description, @price, @discountPrice, @discountPercent, @city_code, @seller_id, @currency, @rating)";
                     c.Execute(sql, vm, commandTimeout: 30);
                     return Ok();
                 }
