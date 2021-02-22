@@ -39,7 +39,7 @@ namespace ClothesstoreProductsAPI.Controllers
         }*/
 
         [HttpGet]
-        public async Task<IActionResult> GetAll([FromQuery] Product vm)
+        public async Task<IActionResult> GetAll([FromBody] Product vm)
         {
             return await Task.Run(() =>
             {
@@ -47,6 +47,20 @@ namespace ClothesstoreProductsAPI.Controllers
                 {
                     var sql = @"SELECT * FROM product";
                     var query = c.Query<Product>(sql, vm, commandTimeout: 30);
+                    return Ok(query);
+                }
+            });
+        }
+
+        [HttpGet("search")]
+        public async Task<IActionResult> GetByName(string name)
+        {
+            return await Task.Run(() =>
+            {
+                using (var c = new MySqlConnection(con.MySQL))
+                {
+                    var sql = @"SELECT * FROM product WHERE name LIKE "+ "\'" +"%"+name+"%"+ "\'" ;
+                    var query = c.Query<Product>(sql, commandTimeout: 30);
                     return Ok(query);
                 }
             });
@@ -71,7 +85,7 @@ namespace ClothesstoreProductsAPI.Controllers
                             (product_id, name, brand, thumbnail, pictures, description, price, discountPrice, discountPercent, city_code, seller_id, currency, rating) 
                             VALUES (@product_id, @name, @brand, @thumbnail, @pictures, @description, @price, @discountPrice, @discountPercent, @city_code, @seller_id, @currency, @rating)";
                     c.Execute(sql, vm, commandTimeout: 30);
-                    return Ok();
+                    return Ok(vm);
                 }
             });
         }
