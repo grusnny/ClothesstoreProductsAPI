@@ -16,7 +16,7 @@ namespace ClothesstoreProductsAPI.Models
 
         public string thumbnail { get; set; }
 
-        public List<FilePath> pictures { get; set; }
+        public string pictures { get; set; }
 
         public string description { get; set; }
 

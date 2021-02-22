@@ -6,7 +6,6 @@ F:\Experimentality\ClothesstoreProductsAPI\bin\Debug\netcoreapp3.1\ClothesstoreP
 F:\Experimentality\ClothesstoreProductsAPI\bin\Debug\netcoreapp3.1\ClothesstoreProductsAPI.runtimeconfig.dev.json
 F:\Experimentality\ClothesstoreProductsAPI\bin\Debug\netcoreapp3.1\ClothesstoreProductsAPI.dll
 F:\Experimentality\ClothesstoreProductsAPI\bin\Debug\netcoreapp3.1\ClothesstoreProductsAPI.pdb
-F:\Experimentality\ClothesstoreProductsAPI\obj\Debug\netcoreapp3.1\ClothesstoreProductsAPI.csprojAssemblyReference.cache
 F:\Experimentality\ClothesstoreProductsAPI\obj\Debug\netcoreapp3.1\ClothesstoreProductsAPI.AssemblyInfoInputs.cache
 F:\Experimentality\ClothesstoreProductsAPI\obj\Debug\netcoreapp3.1\ClothesstoreProductsAPI.AssemblyInfo.cs
 F:\Experimentality\ClothesstoreProductsAPI\obj\Debug\netcoreapp3.1\ClothesstoreProductsAPI.csproj.CoreCompileInputs.cache
@@ -18,3 +17,7 @@ F:\Experimentality\ClothesstoreProductsAPI\obj\Debug\netcoreapp3.1\ClothesstoreP
 F:\Experimentality\ClothesstoreProductsAPI\obj\Debug\netcoreapp3.1\ClothesstoreProductsAPI.dll
 F:\Experimentality\ClothesstoreProductsAPI\obj\Debug\netcoreapp3.1\ClothesstoreProductsAPI.pdb
 F:\Experimentality\ClothesstoreProductsAPI\obj\Debug\netcoreapp3.1\ClothesstoreProductsAPI.genruntimeconfig.cache
+F:\Experimentality\ClothesstoreProductsAPI\bin\Debug\netcoreapp3.1\Dapper.dll
+F:\Experimentality\ClothesstoreProductsAPI\bin\Debug\netcoreapp3.1\MySqlConnector.dll
+F:\Experimentality\ClothesstoreProductsAPI\obj\Debug\netcoreapp3.1\ClothesstoreProductsAPI.csproj.CopyComplete
+F:\Experimentality\ClothesstoreProductsAPI\obj\Debug\netcoreapp3.1\ClothesstoreProductsAPI.csprojAssemblyReference.cache
