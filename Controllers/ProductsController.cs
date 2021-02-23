@@ -74,12 +74,15 @@ namespace ClothesstoreProductsAPI.Controllers
         public async Task<IActionResult> Post([FromBody] Product product)
         {
             ProductDetail detail = new ProductDetail();
-            detail = product.Product_Detail;
-            Seller seller = new Seller();
-            seller = (Seller)detail.Seller;
-            detail.DetailId = product.Product_Id;
+            detail = (ProductDetail)product.Product_Detail;
             City city = new City();
             city = (City)detail.City;
+            Seller seller = new Seller();
+            seller = (Seller)detail.Seller;
+            product.Detail_Id = product.Product_Id;
+            product.Product_Detail.DetailId = product.Product_Id;
+
+
 
             return await Task.Run(() =>
             {
@@ -103,7 +106,7 @@ namespace ClothesstoreProductsAPI.Controllers
                     c.Execute(CityQuery, city, commandTimeout: 30);
 
                     var parameters = new {
-                        DetailId = detail.DetailId, 
+                        DetailId = product.Detail_Id, 
                         SellerId = seller.SellerId, 
                         Code = city.Code,
                         Name = product.Name,
@@ -124,7 +127,7 @@ namespace ClothesstoreProductsAPI.Controllers
 
                     var ProductQuery = @"INSERT INTO product 
                                    (product_id, detail_id, name, price, discountprice, discountpercent,images) 
-                            VALUES (@ProductId,@ProductId, @Name, @Price, @DiscountPrice, @DiscountPercent, @Images)";
+                            VALUES (@Product_Id,@Product_Id, @Name, @Price, @DiscountPrice, @DiscountPercent, @Images)";
                     c.Execute(ProductQuery, product, commandTimeout: 30);
 
 
