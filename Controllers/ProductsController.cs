@@ -48,7 +48,7 @@ namespace ClothesstoreProductsAPI.Controllers
                 using (var c = new MySqlConnection(con.MySQL))
                 {
                     var sql = @"SELECT * FROM product";
-                    var query = c.Query<Product>(sql,  commandTimeout: 30);
+                    var query = c.Query<SqlModelProduct>(sql,  commandTimeout: 30);
                     return Ok(query);
                 }
             });
@@ -62,7 +62,7 @@ namespace ClothesstoreProductsAPI.Controllers
                 using (var c = new MySqlConnection(con.MySQL))
                 {
                     var sql = @"SELECT * FROM product WHERE name LIKE "+ "\'" +"%"+name+"%"+ "\'" ;
-                    var query = c.Query<Product>(sql, commandTimeout: 30);
+                    var query = c.Query<SqlModelProduct>(sql, commandTimeout: 30);
                     return Ok(query);
                 }
             });
@@ -74,10 +74,10 @@ namespace ClothesstoreProductsAPI.Controllers
         public async Task<IActionResult> Post([FromBody] Product product)
         {
             ProductDetail detail = new ProductDetail();
-            detail = product.ProductDetail;
+            detail = product.Product_Detail;
             Seller seller = new Seller();
             seller = (Seller)detail.Seller;
-            detail.DetailId = product.ProductId;
+            detail.DetailId = product.Product_Id;
             City city = new City();
             city = (City)detail.City;
 
