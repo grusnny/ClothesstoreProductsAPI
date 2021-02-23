@@ -61,15 +61,17 @@ namespace ClothesstoreProductsAPI.Controllers
             {
                 using (var c = new MySqlConnection(con.MySQL))
                 {
-                    var sql = @"SELECT * FROM product WHERE name LIKE "+ "\'" +"%"+name+"%"+ "\'" ;
-                    var query = c.Query<SqlModelProduct>(sql, commandTimeout: 30);
+                    var parameter = new { Name = "%"+name+"%" };
+                    var sql = @"SELECT * FROM product WHERE name LIKE @Name;";
+                    
+                    var query = c.Query<SqlModelProduct>(sql,parameter, commandTimeout: 30);
                     return Ok(query);
                 }
             });
         }
 
 
-        // POST api/<ProductsController>
+        // POST /<ProductsController>
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] Product product)
         {
@@ -136,11 +138,21 @@ namespace ClothesstoreProductsAPI.Controllers
             });
         }
 
-        // PUT api/<ProductsController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        // Get <ProductsController>/Product_Id
+        [HttpGet("{Product_Id}")]
+        public async Task<IActionResult> GetById(string Product_Id)
         {
-
+            return await Task.Run(() =>
+            {
+                using (var c = new MySqlConnection(con.MySQL))
+                {
+                    var parammeter = new { Id = Product_Id };
+                    //return Ok(parammeter);
+                    var sql = @"SELECT * FROM detail Where detail_id = @Id;";
+                    var query = c.Query<SqlModelProduct>(sql , parammeter, commandTimeout: 30);
+                    return Ok(query);
+                }
+            });
         }
     }
 }
