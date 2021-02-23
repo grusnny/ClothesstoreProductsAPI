@@ -6,6 +6,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -39,14 +41,14 @@ namespace ClothesstoreProductsAPI.Controllers
         }*/
 
         [HttpGet]
-        public async Task<IActionResult> GetAll([FromBody] Product vm)
+        public async Task<IActionResult> GetAll()
         {
             return await Task.Run(() =>
             {
                 using (var c = new MySqlConnection(con.MySQL))
                 {
                     var sql = @"SELECT * FROM product";
-                    var query = c.Query<Product>(sql, vm, commandTimeout: 30);
+                    var query = c.Query<Product>(sql,  commandTimeout: 30);
                     return Ok(query);
                 }
             });
@@ -66,26 +68,67 @@ namespace ClothesstoreProductsAPI.Controllers
             });
         }
 
-        // GET api/<ProductsController>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
-        {
-            return "value";
-        }
 
         // POST api/<ProductsController>
         [HttpPost]
-        public async Task<IActionResult> Post([FromBody] Product vm)
+        public async Task<IActionResult> Post([FromBody] Product product)
         {
+            ProductDetail detail = new ProductDetail();
+            detail = product.ProductDetail;
+            Seller seller = new Seller();
+            seller = (Seller)detail.Seller;
+            detail.DetailId = product.ProductId;
+            City city = new City();
+            city = (City)detail.City;
+
             return await Task.Run(() =>
             {
                 using (var c = new MySqlConnection(con.MySQL))
                 {
-                    var sql = @"INSERT INTO product 
-                            (product_id, name, brand, thumbnail, pictures, description, price, discountPrice, discountPercent, city_code, seller_id, currency, rating) 
-                            VALUES (@product_id, @name, @brand, @thumbnail, @pictures, @description, @price, @discountPrice, @discountPercent, @city_code, @seller_id, @currency, @rating)";
-                    c.Execute(sql, vm, commandTimeout: 30);
-                    return Ok(vm);
+                    try
+                    {
+                        var SellerQuery = @"INSERT INTO seller 
+                            (seller_id, name, logo) 
+                            VALUES (@SellerId, @Name, @Logo)";
+                        c.Execute(SellerQuery, seller, commandTimeout: 30);
+                    }
+                    catch (Exception e) {
+
+                        return Ok("Seller ya existe"+ e);
+
+                    }
+                    var CityQuery = @"INSERT INTO city 
+                            (name, code) 
+                            VALUES (@Name, @Code)";
+                    c.Execute(CityQuery, city, commandTimeout: 30);
+
+                    var parameters = new {
+                        DetailId = detail.DetailId, 
+                        SellerId = seller.SellerId, 
+                        Code = city.Code,
+                        Name = product.Name,
+                        Description = detail.Description,
+                        Price = product.Price,
+                        DiscountPrice = product.DiscountPrice,
+                        ImagesD = detail.ImagesD,
+                        Brand = detail.Brand,
+                        Thumbnail = detail.Thumbnail,
+                        Currency = detail.Currency,
+                        Rating = detail.Rating
+                    };
+
+                    var DetailQuery = @"INSERT INTO detail 
+                                   (detail_id, seller_id, city_code, name, description, price, discountprice, images, brand, thumbnail, currency, rating) 
+                            VALUES (@DetailId, @SellerId, @Code, @Name, @Description, @Price, @DiscountPrice, @ImagesD, @Brand, @Thumbnail, @Currency, @Rating)";
+                    c.Execute(DetailQuery,parameters, commandTimeout: 30);
+
+                    var ProductQuery = @"INSERT INTO product 
+                                   (product_id, detail_id, name, price, discountprice, discountpercent,images) 
+                            VALUES (@ProductId,@ProductId, @Name, @Price, @DiscountPrice, @DiscountPercent, @Images)";
+                    c.Execute(ProductQuery, product, commandTimeout: 30);
+
+
+                    return Ok(product);
                 }
             });
         }
@@ -94,12 +137,7 @@ namespace ClothesstoreProductsAPI.Controllers
         [HttpPut("{id}")]
         public void Put(int id, [FromBody] string value)
         {
-        }
 
-        // DELETE api/<ProductsController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
         }
     }
 }

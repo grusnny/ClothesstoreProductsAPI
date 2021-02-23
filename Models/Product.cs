@@ -8,31 +8,21 @@ namespace ClothesstoreProductsAPI.Models
     public class Product
     {
 
-        public string product_id { get; set; }
+        public string ProductId { get; set; }
 
-        public string name { get; set; }
+        public string Name { get; set; }
 
-        public string brand { get; set; }
 
-        public string thumbnail { get; set; }
+        public string Images { get; set; }
 
-        public string pictures { get; set; }
+        public float Price { get; set; }
 
-        public string description { get; set; }
+        public float DiscountPrice => (float)(Price - ((Price * DiscountPercent) / 100));
 
-        public float price { get; set; }
+        public float DiscountPercent { get; set; }
 
-        public float discountPrice => (float)(price - ((price * discountPercent) / 100));
+        public ProductDetail ProductDetail { get; set; }
 
-        public float discountPercent { get; set; }
-
-        public string city_code { get; set; }
-
-        public string seller_id { get; set; }
-
-        public string currency { get; set; }
-
-        public float rating { get; set; }
 
     }
 }

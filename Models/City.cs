@@ -7,9 +7,9 @@ namespace ClothesstoreProductsAPI.Models
 {
     public class City
     {
-        public string name { get; set; }
+        public string Name { get; set; }
 
-        public string city_code { get; set; }
+        public string Code { get; set; }
 
     }
 }
