@@ -8,7 +8,7 @@ namespace ClothesstoreProductsAPI.Models
     public class Search
     {
 
-        public Product Product { get; set; }
+        public string Product_Id { get; set; }
 
         public int Count { get; set; }
 
