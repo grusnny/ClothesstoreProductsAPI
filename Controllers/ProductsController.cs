@@ -89,11 +89,6 @@ namespace ClothesstoreProductsAPI.Controllers
             return await Task.Run(() =>
             {
                 var message = "";
-                var result = new
-                {
-                    message = message,
-                    resutl = product
-                };
                 using (var c = new MySqlConnection(con.MySQL))
                 {                  
 
@@ -108,7 +103,7 @@ namespace ClothesstoreProductsAPI.Controllers
                     catch (Exception e)
                     {
 
-                        message = message + "There is already a product registered with that Id";
+                        message = message + "There is already a product registered with that Product_Id. ";
 
                     }
                     try
@@ -123,7 +118,7 @@ namespace ClothesstoreProductsAPI.Controllers
                     catch (Exception exc)
                     {
 
-                        message = message + "There is already a product registered with that Id";
+                        message = message + "There is already a product detail registered with that Id. ";
 
                     }
 
@@ -136,8 +131,7 @@ namespace ClothesstoreProductsAPI.Controllers
                     }
                     catch (Exception e)
                     {
-                        //return Ok("aqui exploto 1"+e);
-                        message = message + "Seller already exists, The current record will be used ";
+                        message = message + "Seller already exists, The current record will be used. ";
 
                     }
                     try
@@ -149,11 +143,15 @@ namespace ClothesstoreProductsAPI.Controllers
                     }
                     catch (Exception ex)
                     {
-                        //return Ok("aqui exploto 2" + ex);
-                        message = message + "City already exists, The current record will be used ";
+                        message = message + "City already exists, The current record will be used. ";
 
                     }
-                    return  Ok(product);
+                    var result = new
+                    {
+                        message = message,
+                        result = product
+                    };
+                    return  Ok(result);
                 }
             });
         }
@@ -250,7 +248,7 @@ namespace ClothesstoreProductsAPI.Controllers
                     var result = new
                     {
                         message = message,
-                        resutl = productdetail
+                        result = productdetail
                     };
                     return Ok(result);
                 }
