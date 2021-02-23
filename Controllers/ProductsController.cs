@@ -97,7 +97,7 @@ namespace ClothesstoreProductsAPI.Controllers
                     }
                     catch (Exception e) {
 
-                        return Ok("Seller ya existe"+ e);
+                        return Ok("Seller ya existe con respuesta: "+ e);
 
                     }
                     var CityQuery = @"INSERT INTO city 
