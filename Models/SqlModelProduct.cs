@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace ClothesstoreProductsAPI.Models
 {
-    public class Product
+    public class SqlModelProduct
     {
 
         public string Product_Id { get; set; }
@@ -22,9 +22,6 @@ namespace ClothesstoreProductsAPI.Models
         public float DiscountPrice => (float)(Price - ((Price * DiscountPercent) / 100));
 
         public float DiscountPercent { get; set; }
-
-        public ProductDetail Product_Detail { get; set; }
-
 
     }
 }
