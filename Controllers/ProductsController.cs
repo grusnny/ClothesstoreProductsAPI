@@ -156,6 +156,109 @@ namespace ClothesstoreProductsAPI.Controllers
             });
         }
 
+        // POST /<ProductsController>/shoppingcart
+        [HttpPost("shoppingcart")]
+        public async Task<IActionResult> PostToShoppingCart([FromBody] ShoppingCart Shoppingcart)
+        {
+
+            var parameter = new 
+            {
+                ShoppingcartId = Shoppingcart.User.UserId
+            
+            };
+
+            return await Task.Run(() =>
+            {
+                var message = "";
+
+                using (var c = new MySqlConnection(con.MySQL))
+                {
+
+                    var sql = @"SELECT * FROM shoppingcart Where shoppingcart_id = @ShoppingcartId;";
+                    var query = c.Query<SqlModelShoppingCart>(sql, parameter, commandTimeout: 30);
+
+                    SqlModelShoppingCart shoppingcart = new SqlModelShoppingCart();
+                    var querryarrayshopping = query.ToArray();
+
+                    if (querryarrayshopping.Length > 0)
+                    {
+                        shoppingcart = (SqlModelShoppingCart)querryarrayshopping[0];
+                        var listOfProducts = shoppingcart.Products;
+                        listOfProducts = listOfProducts.TrimEnd(']');
+
+                        var parameters = new
+                        {
+                            ShoppingcartId = shoppingcart.shoppingcart_id,
+                            Products = listOfProducts + "," + Shoppingcart.Products + "]"
+                        };
+                        try
+                        {
+
+                            var searchqueryupdate = @"UPDATE shoppingcart 
+                                            SET products = @Products
+                                            WHERE shoppingcart_id = @ShoppingcartId";
+                            c.Execute(searchqueryupdate, parameters, commandTimeout: 30);
+
+                            message = message + "Shoppingcart updated. ";
+                        }
+
+                        catch (Exception e)
+                        {
+
+                        }
+                    }
+                    else
+                    {
+                        User user = new User();
+                        user = (User)Shoppingcart.User;
+
+                        var parameters = new
+                        {
+                            ShoppingcartId = user.UserId,
+                            Products = "["+ Shoppingcart.Products + "]"
+                        };
+
+                        try
+                        {
+                            var userquery = @"INSERT INTO user 
+                                (user_id, name, email) 
+                                VALUES (@UserId, @Name, @Email)";
+                            c.Execute(userquery, user, commandTimeout: 30);
+                        }
+                        catch(Exception e)
+                        {
+
+                            message = message + "User already exists, The current record will be used. ";
+
+                        }
+                        try
+                        {
+                            var searchquery = @"INSERT INTO shoppingcart 
+                                (shoppingcart_id, products) 
+                                VALUES (@ShoppingcartId, @Products)";
+                            c.Execute(searchquery, parameters, commandTimeout: 30);
+                        }
+                        catch (Exception ex)
+                        {
+
+                            message = message + "Error creating  Shoppingcart";
+
+                        }
+
+                        message = message + "ShoppingCart created. ";
+
+                    }
+                    var result = new
+                    {
+                        message = message,
+                        result = Shoppingcart
+                    };
+
+                    return Ok(result);
+                }
+            });
+        }
+
         // Get <ProductsController>/Product_Id
         [HttpGet("{Product_Id}")]
         public async Task<IActionResult> GetProductById(string Product_Id)
