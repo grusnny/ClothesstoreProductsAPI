@@ -58,10 +58,10 @@ namespace ClothesstoreProductsAPI.Services
                     var querryarrayproducts = query.ToList();
                     var numberpages = Math.Ceiling((float)querryarrayproducts.Count / (float)amount);
                     var min = (page - 1) * amount;
-
+                    var totaldata = querryarrayproducts.Count;
                     if (page <= numberpages && page > 0 && amount > 0)
                     {
-                        if (min+amount > querryarrayproducts.Count)
+                        if (min+amount > totaldata)
                         {
                             amount = amount + min - querryarrayproducts.Count;
                         }
@@ -71,7 +71,8 @@ namespace ClothesstoreProductsAPI.Services
                             result = arrayitems,
                             page = page,
                             amount = amount,
-                            totalpages = numberpages
+                            totalpages = numberpages,
+                            totaldata = totaldata
                         };
                         return (object)result;
 
