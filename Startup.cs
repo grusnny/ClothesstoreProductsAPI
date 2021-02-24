@@ -28,6 +28,9 @@ namespace ClothesstoreProductsAPI
             ConnectionStrings con = new ConnectionStrings();
             Configuration.Bind("ConnectionStrings", con);
             services.AddSingleton(con);
+            services.AddControllers().AddNewtonsoftJson(options =>
+                options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+            );
 
             services.AddControllers();
             services.AddMvc();

@@ -7,7 +7,6 @@ namespace ClothesstoreProductsAPI.Models
 {
     public class SqlModelShoppingCart
     {
-
         public string shoppingcart_id { get; set; }
         public string Products { get; set; }
 
