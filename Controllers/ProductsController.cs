@@ -41,7 +41,7 @@ namespace ClothesstoreProductsAPI.Controllers
 
         // Get /<ProductsController>?search=name
         [HttpGet("search")]
-        public async Task<IActionResult> GetProductByName(string name)
+        public async Task<IActionResult> GetProductByName(string name, int page, int amount)
         {
             return await Task.Run(() =>
             {
@@ -51,6 +51,55 @@ namespace ClothesstoreProductsAPI.Controllers
                     var parameter = new { Name = "%" + name + "%" };
                     var sql = @"SELECT * FROM product WHERE name LIKE @Name;";
                     var query = c.Query<SqlModelProduct>(sql, parameter, commandTimeout: 30);
+                    var querryarrayproducts = query.ToList();
+                    var numberpages = Math.Ceiling((float)querryarrayproducts.Count / (float)amount);
+                    var min = (page - 1) * amount;
+                    var max = page * amount;
+                    if (max <= querryarrayproducts.Count &&  page <= numberpages && page > 0 && amount > 0)
+                    {
+
+                            var arrayitems = querryarrayproducts.GetRange(min, amount);
+                            var result = new
+                            {
+                                result = arrayitems,
+                                page = page,
+                                amount = amount,
+                                totalpages = numberpages
+                            };
+                            return Ok(result);
+
+                    }
+                    else 
+                    {
+                        var result = new
+                        {
+                            message = "Wrong values"
+                        };
+                        return Ok(result);
+                    }
+                    
+                }
+            });
+        }
+
+        // Get /<ProductsController>/moresearched?top=maxnumber
+        [HttpGet("moresearched")]
+        public async Task<IActionResult> GetProductMoreSearched(string top)
+        {
+            return await Task.Run(() =>
+            {
+                using (var c = new MySqlConnection(con.MySQL))
+                {
+
+                    var parameter = new { Top = top };
+
+                    var sql = @"SELECT  * 
+                    FROM KazAVbNWEA.search S, KazAVbNWEA.detail D
+                    WHERE S.product_id = D.detail_id
+                    ORDER BY count DESC 
+                    LIMIT 0, "+top;
+                    var query = c.Query<SqlModelProduct>(sql, parameter, commandTimeout: 30);
+
                     return Ok(query);
                 }
             });
