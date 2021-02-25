@@ -5,11 +5,10 @@ using System.Threading.Tasks;
 
 namespace ClothesstoreProductsAPI.Models
 {
-    public class Seller
+    public class SqlModelShoppingCart
     {
-        public string SellerId { get; set; }
-        public string Name { get; set; }
-        public string Logo { get; set; }
+        public string shoppingcart_id { get; set; }
+        public string Products { get; set; }
 
     }
 }
