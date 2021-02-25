@@ -30,15 +30,16 @@ namespace ClothesstoreProductsAPI.Services
             });
         }
 
-        public async Task<IEnumerable<SqlModelShoppingCart>> GetAllShoppingCartAsync()
+        public async Task<IEnumerable<SqlModelShoppingCart>> GetShoppingCartByIdAsync(string User_Id)
         {
             return await Task.Run(() =>
             {
+                var param = new { Id = User_Id };
 
                 using (var c = new MySqlConnection(con.MySQL))
                 {
-                    var sql = @"SELECT * FROM shoppingcart";
-                    var query = c.Query<SqlModelShoppingCart>(sql, commandTimeout: 30);
+                    var sql = @"SELECT * FROM shoppingcart WHERE shoppingcart_id = @Id;";
+                    var query = c.Query<SqlModelShoppingCart>(sql, param, commandTimeout: 30);
                     return query;
                 }
 
