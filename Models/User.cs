@@ -5,11 +5,14 @@ using System.Threading.Tasks;
 
 namespace ClothesstoreProductsAPI.Models
 {
-    public class Seller
+    public class User
     {
-        public string SellerId { get; set; }
+
+        public string UserId { get; set; }
+
         public string Name { get; set; }
-        public string Logo { get; set; }
+
+        public string Email { get; set; }
 
     }
 }
