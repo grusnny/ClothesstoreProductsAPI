@@ -1,0 +1,240 @@
+{
+	"info": {
+		"_postman_id": "2698ab59-5f32-434c-9e94-173024458d8a",
+		"name": "Closthesstore api products",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Products",
+			"item": [
+				{
+					"name": "PostProduct",
+					"protocolProfileBehavior": {
+						"strictSSL": false
+					},
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\"product_Id\": \"SHIRT01\",\r\n\"name\": \"Camisa Polo\",\r\n\"images\": \"[https://arturocalle.vteximg.com.br/arquivos/ids/254024-1200-1598/HOMBRE-POLO-10069616-ROJO_4.jpg?v=637280511358170000,https://arturocalle.vteximg.com.br/arquivos/ids/254026-1200-1598/HOMBRE-POLO-10069616-ROJO_6.jpg?v=637280511633100000]\",\r\n\"price\": 43900,\r\n\"discountPercent\": 0.05,\r\n\"product_Detail\": {\r\n                    \"description\": \"Elaborada en algodón tejido piqué, silueta recta, está polo es un básico de armario que combina con cualquier look. Presenta nuestro icónico logo en el pecho, cuello clásico y pechera de dos botones.\",\r\n                    \"imagesD\": \"[imagen1,imagen2,imagen3]\",\r\n                    \"seller\": {\r\n                                \"sellerId\": \"01\",\r\n                                \"name\": \"Clothesstore\",\r\n                                \"logo\": \"logo URL\"\r\n                              },\r\n                    \"city\": {\r\n                                \"name\": \"Medellin\",\r\n                                \"code\": \"Med\"\r\n                            },\r\n                    \"brand\": \"Polo\",\r\n                    \"thumbnail\": \"url thumbnail\",\r\n                    \"currency\": \"COP\",\r\n                    \"rating\": 0.5\r\n                }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://clothesstoreproductsapi.herokuapp.com/products",
+							"protocol": "https",
+							"host": [
+								"clothesstoreproductsapi",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PostShoppingCart",
+					"protocolProfileBehavior": {
+						"strictSSL": false
+					},
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\"products\":\"Id_product 5\",\r\n\"user\":{\r\n    \"userId\":\"123456\",\r\n    \"name\":\"andres\",\r\n    \"email\":\"andres.ramirezh@udea.edu.co\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://clothesstoreproductsapi.herokuapp.com/products/shoppingcart",
+							"protocol": "https",
+							"host": [
+								"clothesstoreproductsapi",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"products",
+								"shoppingcart"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetAllProducts",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\"productId\": \"Prueba productId\",\r\n\"name\": \"Prueba Name\",\r\n\"images\": \"Prueba Images\",\r\n\"price\": 0,\r\n\"discountPrice\": 0,\r\n\"discountPercent\": 0,\r\n\"productdetail\": {\r\n                    \"detailId\": \"Prueba productId\",\r\n                    \"description\": \"Prueba description\",\r\n                    \"imagen\": \"Prueba Images\",\r\n                    \"seller\": {\r\n                                \"sellerId\": \"Prueba sellerId\",\r\n                                \"name\": \"Prueba Name\",\r\n                                \"logo\": \"Prueba Logo\"\r\n                              },\r\n                    \"city\": {\r\n                                \"name\": \"Prueba Name\",\r\n                                \"code\": \"Prueba code\"\r\n                            },\r\n                    \"brand\": \"Prueba brand\",\r\n                    \"thumbnail\": \"Prueba thumbnail\",\r\n                    \"currency\": \"Prueba currency\",\r\n                    \"rating\": 0\r\n                }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://clothesstoreproductsapi.herokuapp.com/products",
+							"protocol": "https",
+							"host": [
+								"clothesstoreproductsapi",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetShoppingCartById",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\"productId\": \"Prueba productId\",\r\n\"name\": \"Prueba Name\",\r\n\"images\": \"Prueba Images\",\r\n\"price\": 0,\r\n\"discountPrice\": 0,\r\n\"discountPercent\": 0,\r\n\"productdetail\": {\r\n                    \"detailId\": \"Prueba productId\",\r\n                    \"description\": \"Prueba description\",\r\n                    \"imagen\": \"Prueba Images\",\r\n                    \"seller\": {\r\n                                \"sellerId\": \"Prueba sellerId\",\r\n                                \"name\": \"Prueba Name\",\r\n                                \"logo\": \"Prueba Logo\"\r\n                              },\r\n                    \"city\": {\r\n                                \"name\": \"Prueba Name\",\r\n                                \"code\": \"Prueba code\"\r\n                            },\r\n                    \"brand\": \"Prueba brand\",\r\n                    \"thumbnail\": \"Prueba thumbnail\",\r\n                    \"currency\": \"Prueba currency\",\r\n                    \"rating\": 0\r\n                }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://clothesstoreproductsapi.herokuapp.com/products/shoppingcart/123456",
+							"protocol": "https",
+							"host": [
+								"clothesstoreproductsapi",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"products",
+								"shoppingcart",
+								"123456"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetMoreSearched",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\"productId\": \"Prueba productId\",\r\n\"name\": \"Prueba Name\",\r\n\"images\": \"Prueba Images\",\r\n\"price\": 0,\r\n\"discountPrice\": 0,\r\n\"discountPercent\": 0,\r\n\"productdetail\": {\r\n                    \"detailId\": \"Prueba productId\",\r\n                    \"description\": \"Prueba description\",\r\n                    \"imagen\": \"Prueba Images\",\r\n                    \"seller\": {\r\n                                \"sellerId\": \"Prueba sellerId\",\r\n                                \"name\": \"Prueba Name\",\r\n                                \"logo\": \"Prueba Logo\"\r\n                              },\r\n                    \"city\": {\r\n                                \"name\": \"Prueba Name\",\r\n                                \"code\": \"Prueba code\"\r\n                            },\r\n                    \"brand\": \"Prueba brand\",\r\n                    \"thumbnail\": \"Prueba thumbnail\",\r\n                    \"currency\": \"Prueba currency\",\r\n                    \"rating\": 0\r\n                }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://clothesstoreproductsapi.herokuapp.com/products/moresearched?top=1",
+							"protocol": "https",
+							"host": [
+								"clothesstoreproductsapi",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"products",
+								"moresearched"
+							],
+							"query": [
+								{
+									"key": "top",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://clothesstoreproductsapi.herokuapp.com/products/SHIRT02",
+							"protocol": "https",
+							"host": [
+								"clothesstoreproductsapi",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"products",
+								"SHIRT02"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetByName",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://clothesstoreproductsapi.herokuapp.com/products/search?name=cami&page=2&amount=1",
+							"protocol": "https",
+							"host": [
+								"clothesstoreproductsapi",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"products",
+								"search"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "cami"
+								},
+								{
+									"key": "page",
+									"value": "2"
+								},
+								{
+									"key": "amount",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
