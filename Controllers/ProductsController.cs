@@ -38,13 +38,13 @@ namespace ClothesstoreProductsAPI.Controllers
             });
         }
 
-        [HttpGet("shoppingcart")]
-        public async Task<IEnumerable<SqlModelShoppingCart>> GetAllShoppingCart()
+        [HttpGet("shoppingcart/{User_Id}")]
+        public async Task<IEnumerable<SqlModelShoppingCart>> GetShoppingCartById(string User_Id)
         {
             return await Task.Run(() =>
             {
 
-                return getService.GetAllShoppingCartAsync();
+                return getService.GetShoppingCartByIdAsync(User_Id);
 
             });
         }
